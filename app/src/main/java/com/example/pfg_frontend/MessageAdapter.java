@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -47,7 +48,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
         // Mensaje del usuario
         if (message.isFromUser()) {
-            holder.tvMessage.setTextColor(Color.WHITE); // Forzamos blanco
+            holder.tvMessage.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.md_theme_on_primary));
+
             holder.tvMessage.setPaintFlags(holder.tvMessage.getPaintFlags() & (~Paint.UNDERLINE_TEXT_FLAG));
             holder.tvMessage.setOnClickListener(null);
         } else {
