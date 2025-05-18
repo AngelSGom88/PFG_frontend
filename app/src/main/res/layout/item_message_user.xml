@@ -16,8 +16,8 @@
             android:id="@+id/tvMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/md_theme_on_primary"
-            android:textSize="16sp"/>
+            android:textColor="@color/md_theme_secondary"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvTimestamp"

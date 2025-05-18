@@ -45,27 +45,35 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         holder.tvMessage.setText(message.getText());
         holder.tvTimestamp.setText(message.getFormattedTime());
 
-        if (message.getUrl() != null && !message.getUrl().trim().isEmpty()) {
-            holder.tvMessage.setTextColor(Color.BLUE);
-            holder.tvMessage.setPaintFlags(holder.tvMessage.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-
-            holder.tvMessage.setOnClickListener(v -> {
-                String url = "http://192.168.56.1:8081" + message.getUrl();  // Asegúrate que la URL esté completa
-                Log.d("DEBUG", "URL al hacer clic: " + url);
-
-                try {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    v.getContext().startActivity(intent);
-                } catch (Exception e) {
-                    Toast.makeText(v.getContext(), "No se pudo abrir el navegador", Toast.LENGTH_SHORT).show();
-                    Log.e("DEBUG", "Error al abrir el navegador: " + e.getMessage());
-                }
-            });
-
-        } else {
-            holder.tvMessage.setTextColor(Color.BLACK);
-            holder.tvMessage.setPaintFlags(holder.tvMessage.getPaintFlags() & ~Paint.UNDERLINE_TEXT_FLAG);
+        // Mensaje del usuario
+        if (message.isFromUser()) {
+            holder.tvMessage.setTextColor(Color.WHITE); // Forzamos blanco
+            holder.tvMessage.setPaintFlags(holder.tvMessage.getPaintFlags() & (~Paint.UNDERLINE_TEXT_FLAG));
             holder.tvMessage.setOnClickListener(null);
+        } else {
+            // Mensaje del bot
+            if (message.getUrl() != null && !message.getUrl().isEmpty()) {
+                holder.tvMessage.setTextColor(Color.BLUE);
+                holder.tvMessage.setPaintFlags(holder.tvMessage.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+                holder.tvMessage.setOnClickListener(v -> {
+                    String url = "http://192.168.56.1:8081" + message.getUrl();
+                    Log.d("DEBUG", "URL al hacer clic: " + url);
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setDataAndType(Uri.parse(url), "application/pdf");
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        v.getContext().startActivity(intent);
+                    } catch (Exception e) {
+                        Toast.makeText(v.getContext(), "No se pudo abrir el documento", Toast.LENGTH_SHORT).show();
+                        Log.e("DEBUG", "Error al abrir la URL: " + e.getMessage());
+                    }
+                });
+            } else {
+                holder.tvMessage.setTextColor(Color.BLACK); // Normal sin URL
+                holder.tvMessage.setPaintFlags(holder.tvMessage.getPaintFlags() & (~Paint.UNDERLINE_TEXT_FLAG));
+                holder.tvMessage.setOnClickListener(null);
+            }
         }
     }
 
