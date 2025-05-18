@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="md_theme_primary">#424242</color> <!-- Gris oscuro (barra superior, botones) -->
+    <color name="md_theme_secondary">#BDBDBD</color> <!-- Gris medio (detalles sutiles) -->
+    <color name="md_theme_background">#FAFAFA</color> <!-- Gris casi blanco (fondo general) -->
+    <color name="md_theme_surface">#E0E0E0</color> <!-- Gris claro (para tarjetas o contenedores) -->
+    <color name="md_theme_on_primary">#FFFFFF</color> <!-- Blanco para texto en fondos oscuros -->
+    <color name="md_theme_on_background">#333333</color> <!-- Gris oscuro para texto en fondos claros -->
+    <color name="md_bubble_user">#212121</color> <!-- Burbuja del usuario (casi negro) -->
+    <color name="md_bubble_bot">#E0E0E0</color> <!-- Burbuja del bot (gris claro) -->
+    <color name="md_timestamp_bot">#616161</color>
+</resources>
