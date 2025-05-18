@@ -65,7 +65,7 @@ public class ChatFragment extends Fragment {
 
                 // Retrofit
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.56.1:8081") // cambia si usas móvil físico
+                        .baseUrl("http://10.0.2.2:8081") // cambia si usas móvil físico
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 

@@ -59,7 +59,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 holder.tvMessage.setPaintFlags(holder.tvMessage.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
                 holder.tvMessage.setOnClickListener(v -> {
-                    String url = "http://192.168.56.1:8081" + message.getUrl();
+                    String url = "http://10.0.2.2:8081" + message.getUrl();
                     Log.d("DEBUG", "URL al hacer clic: " + url);
                     try {
                         Intent intent = new Intent(Intent.ACTION_VIEW);
